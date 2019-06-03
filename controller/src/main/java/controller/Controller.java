@@ -1,94 +1,84 @@
 package controller;
 
-import contract.ControllerOrder;
-import contract.IController;
-import contract.IModel;
-import contract.IView;
+import contract.*;
 
-/**
- * The Class Controller.
- */
-public final class Controller implements IController {
+public final class Controller implements IController, IOrderPerformer, IBoulderDashController {
 
-	/** The view. */
-	private IView		view;
+	private model.element.motionless.Door tkt;
+	private final int speed = 20000;
+	private StateDoor door;
+	private IView view;
+	private IModel model;
+	private Order stackOrder;
 
-	/** The model. */
-	private IModel	model;
-
-	/**
-	 * Instantiates a new controller.
-	 *
-	 * @param view
-	 *          the view
-	 * @param model
-	 *          the model
-	 */
-	public Controller(final IView view, final IModel model) {
-		this.setView(view);
-		this.setModel(model);
+	public IView getView() {
+		return this.view;
 	}
 
-	/**
-     * Control.
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#control()
-	 */
-	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+	public void setView(IView view) {
+		this.view = view;
 	}
 
-	/**
-     * Sets the view.
-     *
-     * @param pview
-     *            the new view
-     */
-	private void setView(final IView pview) {
-		this.view = pview;
+	public IModel getModel() {
+		return this.model;
 	}
 
-	/**
-	 * Sets the model.
-	 *
-	 * @param model
-	 *          the new model
-	 */
-	private void setModel(final IModel model) {
+	public void setModel(IModel model) {
 		this.model = model;
 	}
 
+	public Order getStackOrder() {
+		return this.stackOrder;
+	}
+
+	public void setStackOrder(Order stackOrder) {
+		this.stackOrder = stackOrder;
+	}
+
 	/**
-     * Order perform.
-     *
-     * @param controllerOrder
-     *            the controller order
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#orderPerform(contract.ControllerOrder)
+	 * 
+	 * @param view
+	 * @param model
 	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-			case English:
-				this.model.loadHelloWorld("GB");
-				break;
-			case Francais:
-				this.model.loadHelloWorld("FR");
-				break;
-			case Deutsch:
-				this.model.loadHelloWorld("DE");
-				break;
-			case Indonesia:
-				this.model.loadHelloWorld("ID");
-				break;
-			default:
-				break;
-		}
+	public Controller(final IView view, final IModel model) {
+		// TODO - implement Controller.Controller
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void start() throws InterruptedException {
+		// TODO - implement Controller.start
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param stackOrder
+	 */
+	public void orderPerform(final Order stackOrder) {
+		// TODO - implement Controller.orderPerform
+		throw new UnsupportedOperationException();
+	}
+
+	public void clearStackOrder() {
+		// TODO - implement Controller.clearStackOrder
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public IOrderPerformer getOrderPeformer() {
+		// TODO - implement Controller.getOrderPeformer
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param userOrder
+	 */
+	@Override
+	public void orderPerformer(Order userOrder) {
+		// TODO - implement Controller.orderPerformer
+		throw new UnsupportedOperationException();
 	}
 
 }
