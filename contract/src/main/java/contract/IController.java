@@ -1,22 +1,17 @@
 package contract;
 
-/**
- * The Interface IController.
- *
- * @author Jean-Aymeric Diet
- */
 public interface IController {
 
-	/**
-	 * Control.
-	 */
-	public void control();
+	IView getView();
+
+	IModel getModel();
+
+	Order getStackOrder();
 
 	/**
-	 * Order perform.
-	 *
-	 * @param controllerOrder
-	 *          the controller order
+	 * 
+	 * @param keyCodeToUserOrder
 	 */
-	public void orderPerform(ControllerOrder controllerOrder);
+	void orderPerform(Order keyCodeToUserOrder);
+
 }
