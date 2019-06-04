@@ -4,19 +4,25 @@ import model.Level;
 
 import java.sql.*;
 
-
-public class DAOLevel extends DAOEntity {
+/**
+ * The Class DAOLevel.
+ *
+ * @author Ismaël El Kihel / Manon Cantos
+ *
+ */
+public class DAOLevel extends DAOConnector {
 
 	/**
 	 * Instantiates a new DAO model.
-	 */
-	public DAOLevel(){
+     * @param connection
+     */
+	public DAOLevel(Connection connection){
 	}
 
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see model.sql.DAOEntity#create(model.Entity)
+	 * @see model.sql.DAOConnector#create(model.Entity)
 	 */
 	@Override
 	public boolean create(final Level entity) {
@@ -27,7 +33,7 @@ public class DAOLevel extends DAOEntity {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see model.sql.DAOEntity#delete(model.Entity)
+	 * @see model.sql.DAOConnector#delete(model.Entity)
 	 */
 	@Override
 	public boolean delete(final Level entity) {
@@ -38,7 +44,7 @@ public class DAOLevel extends DAOEntity {
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @see model.sql.DAOEntity#update(model.Entity)
+	 * @see model.sql.DAOConnector#update(model.Entity)
 	 */
 	@Override
 	public boolean update(final Level entity) {

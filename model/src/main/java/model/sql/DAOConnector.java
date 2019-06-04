@@ -6,11 +6,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * The Class DAOEntity.
+ * The Class DAOConnector.
  *
  * @author Jean-Aymeric Diet
  */
-abstract class DAOEntity {
+abstract class DAOConnector {
 
 	/** The connection. */
 	private final Connection connection;
@@ -23,11 +23,11 @@ abstract class DAOEntity {
 	 * @throws SQLException
 	 *           the SQL exception
 	 */
-	public DAOEntity(final Connection connection) throws SQLException {
+	public DAOConnector(final Connection connection) throws SQLException {
 		this.connection = connection;
 	}
 
-	protected DAOEntity() {
+	protected DAOConnector() {
 		connection = null;
 	}
 
