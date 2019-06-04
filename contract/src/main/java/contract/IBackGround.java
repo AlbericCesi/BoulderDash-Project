@@ -1,4 +1,4 @@
 package contract;
 
-public interface IBackGround {
+public interface IBackWard {
 }

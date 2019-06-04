@@ -1,8 +1,14 @@
 package view;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.*;
-import java.awt.event.*;
-import contract.*;
+
+import contract.IController;
+import model.IModel;
+import model.mobile.Human;
 
 /**
  * The Class ViewFrame.
@@ -18,182 +24,155 @@ class ViewFrame extends JFrame implements KeyListener {
 	/**
 	 * The model.
 	 */
-	private IModel model;
+	 private IModel						model;
+
+	 private Human human;
 	/**
 	 * The controller.
 	 */
 	private IController controller;
 
 	/**
-	 * Instantiates a new view frame.
-	 * @param model the model
-	 */
-	public ViewFrame(final IModel model) throws java.awt.HeadlessException {
-		// TODO - implement ViewFrame.ViewFrame
-		throw new UnsupportedOperationException();
-	}
+     * Instantiates a new view frame.
+     *
+     * @param model
+     *          the model
+     * @throws HeadlessException
+     *           the headless exception
+     */
+    public ViewFrame(final IModel model) throws HeadlessException {
+        this.buildViewFrame(model);
+    }
 
-	/**
-	 * Instantiates a new view frame.
-	 * @param model the model
-	 * @param gc the gc
-	 */
-	public ViewFrame(final IModel model, final java.awt.GraphicsConfiguration gc) {
-		// TODO - implement ViewFrame.ViewFrame
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Instantiates a new view frame.
+     *
+     * @param model
+     *          the model
+     * @param gc
+     *          the gc
+     */
+    public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
+        super(gc);
+        this.buildViewFrame(model);
+    }
 
-	/**
-	 * Instantiates a new view frame.
-	 * @param model the model
-	 * @param title the title
-	 */
-	public ViewFrame(final IModel model, final String title) throws java.awt.HeadlessException {
-		// TODO - implement ViewFrame.ViewFrame
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Instantiates a new view frame.
+     *
+     * @param model
+     *          the model
+     * @param title
+     *          the title
+     * @throws HeadlessException
+     *           the headless exception
+     */
+    public ViewFrame(final IModel model, final String title) throws HeadlessException {
+        super(title);
+        this.buildViewFrame(model);
+    }
 
-	/**
-	 * Instantiates a new view frame.
-	 * @param model the model
-	 * @param title the title
-	 * @param gc the gc
-	 */
-	public ViewFrame(final IModel model, final String title, final java.awt.GraphicsConfiguration gc) {
-		// TODO - implement ViewFrame.ViewFrame
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Instantiates a new view frame.
+     *
+     * @param model
+     *          the model
+     * @param title
+     *          the title
+     * @param gc
+     *          the gc
+     */
+    public ViewFrame(final IModel model, final String title, final GraphicsConfiguration gc) {
+        super(title, gc);
+        this.buildViewFrame(model);
+    }
 
-	/**
-	 * Gets the controller.
-	 * @return the controller
-	 */
-	private IController getController() {
-		return this.controller;
-	}
+    /**
+     * Gets the controller.
+     *
+     * @return the controller
+     */
+    private IController getController() {
+        return this.controller;
+    }
 
-	/**
-	 * Sets the controller.
-	 * @param controller the new controller
-	 */
-	protected void setController(final IController controller) {
-		this.controller = controller;
-	}
+    /**
+     * Sets the controller.
+     *
+     * @param controller
+     *          the new controller
+     */
+    void setController(final IController controller) {
+        this.controller = controller;
+    }
 
-	/**
-	 * Gets the model.
-	 * @return the model
-	 */
-	protected IModel getModel() {
-		return this.model;
-	}
+    /**
+     * Gets the model.
+     *
+     * @return the model
+     */
+    IModel getModel() {
+        return this.model;
+    }
 
-	/**
-	 * Sets the model.
-	 * @param model the new model
-	 */
-	private void setModel(final IModel model) {
-		this.model = model;
-	}
+    /**
+     * Sets the model.
+     *
+     * @param model
+     *          the new model
+     */
+    private void setModel(final IModel model) {
+        this.model = model;
+    }
 
-	/**
-	 * Builds the view frame.
-	 * @param model the model
-	 */
-	void buildViewFrame(final IModel model) {
-		// TODO - implement ViewFrame.buildViewFrame
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Builds the view frame.
+     * @param model the model
+     */
+    private void buildViewFrame(IModel model) {
+        this.setModel(this.model);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.addKeyListener(this);
+        this.setContentPane(new ViewPanel(this));
+        this.setSize(32*16 + this.getInsets().left + this.getInsets().right, 32*16 + this.getInsets().top + this.getInsets().bottom);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Grosse pisse de mes deux");
+    }
 
-	/**
-	 * Prints the message.
-	 * @param message the message
-	 */
-	public void printMessage(final String message) {
-		// TODO - implement ViewFrame.printMessage
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Prints the message.
+     *
+     * @param message
+     *          the message
+     */
+    public void printMessage(final String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
-	 * @param e
-	 */
-	public void keyTyped(final java.awt.event.KeyEvent e) {
-		// TODO - implement ViewFrame.keyTyped
-		throw new UnsupportedOperationException();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+     */
+    public void keyTyped(final KeyEvent e) {
 
-	/**
-	 * (non-Javadoc)
-	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
-	 * @param e
-	 */
-	public void keyPressed(final java.awt.event.KeyEvent e) {
-		// TODO - implement ViewFrame.keyPressed
-		throw new UnsupportedOperationException();
-	}
+    }
 
-	/**
-	 * (non-Javadoc)
-	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
-	 * @param e
-	 */
-	public void keyReleased(final java.awt.event.KeyEvent e) {
-		// TODO - implement ViewFrame.keyReleased
-		throw new UnsupportedOperationException();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+     */
+    public void keyPressed(final KeyEvent e) {
+        this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
+    }
+    /*
+     * (non-Javadoc)
+     *
+     * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+     */
+    public void keyReleased(final KeyEvent e) {
 
-	/**
-	 * 
-	 * @param b
-	 */
-	public void setHeightLooped(boolean b) {
-		// TODO - implement ViewFrame.setHeightLooped
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param dimension
-	 */
-	public void setDimension(java.awt.Dimension dimension) {
-		// TODO - implement ViewFrame.setDimension
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param closeView
-	 */
-	public void setDisplayFrame(java.awt.Rectangle closeView) {
-		// TODO - implement ViewFrame.setDisplayFrame
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param onTheMap
-	 * @param x
-	 * @param y
-	 */
-	public void addSquare(IElement onTheMap, int x, int y) {
-		// TODO - implement ViewFrame.addSquare
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param player
-	 */
-	public void addPawn(IMobile player) {
-		// TODO - implement ViewFrame.addPawn
-		throw new UnsupportedOperationException();
-	}
-
-	public java.util.Observer getObserver() {
-		// TODO - implement ViewFrame.getObserver
-		throw new UnsupportedOperationException();
-	}
-
-}
+    }
+}}

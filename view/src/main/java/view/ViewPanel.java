@@ -1,7 +1,10 @@
 package view;
 
 import javax.swing.*;
-import java.util.*;
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
+
 
 /**
  * The Class ViewPanel.
@@ -24,10 +27,9 @@ class ViewPanel extends JPanel implements Observer {
 	 * @param viewFrame the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
-		// TODO - implement ViewPanel.ViewPanel
-		throw new UnsupportedOperationException();
+		this.setViewFrame(viewFrame);
+        viewFrame.getModel();
 	}
-
 	/**
 	 * Gets the view frame.
 	 * @return the view frame
@@ -50,9 +52,9 @@ class ViewPanel extends JPanel implements Observer {
 	 * @param arg0
 	 * @param arg1
 	 */
-	public void update(final java.util.Observable arg0, final Object arg1) {
-		// TODO - implement ViewPanel.update
-		throw new UnsupportedOperationException();
+	public void update(final Observable arg0, final Object arg1) {
+        this.repaint();
+
 	}
 
 	/**
@@ -61,9 +63,7 @@ class ViewPanel extends JPanel implements Observer {
 	 * @param graphics
 	 */
 	@Override
-	protected void paintComponent(final java.awt.Graphics graphics) {
-		// TODO - implement ViewPanel.paintComponent
-		throw new UnsupportedOperationException();
-	}
-
+	protected void paintComponent(final Graphics graphics) {
+        graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+    }
 }
