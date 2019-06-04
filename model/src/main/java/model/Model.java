@@ -1,65 +1,85 @@
 package model;
 
-import java.util.*;
+import model.sql.DAOLevel;
+import model.sql.DBConnection;
+
+import java.util.Observable;
+
 
 /**
  * The Class model.
- * 
+ *
  * @author Jean-Aymeric Diet
  */
 public final class Model extends Observable implements IModel {
 
-	/**
-	 * The model.
-	 */
+	/** The model. */
 	private Model model;
-	private Level level;
 
-	public Model getModel() {
-		return this.model;
+	/** The level. */
+	private Level level;
+	/**
+     * Gets the model
+     *
+     * @return the model and the level
+     */
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see model.IModel#getModel()
+	 */
+	public Model () {
+		this.level = new Level();
+	}
+	/**
+     * Gets the observable.
+     *
+     * @return the observable
+     */
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see model.IModel#getObservable()
+	 */
+	public Observable getObservable() {
+		return this;
 	}
 
+	/**
+	 * Gets the level.
+	 * @return level
+	 */
 	public Level getLevel() {
 		return this.level;
 	}
 
-	public void setLevel(Level level) {
+	/**
+	 * Sets a new level.
+	 *
+	 * @param level
+	 * 			The new level.
+	 */
+	public void setLevel(final Level level) {
 		this.level = level;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
+	public void loadLevel(final int code) {
+		final DAOLevel daolevel = new DAOLevel(DBConnection.getInstance().getConnection());
+		this.setLevel(daolevel.find(code));
+	}
 	/**
-	 * (non-Javadoc)
-	 * @see model.IModel#getModel()
+	 * Gets the model.
+	 *
+	 * @return model
 	 */
-	public Model() {
-		// TODO - implement Model.Model
-		throw new UnsupportedOperationException();
+	public Model getModel() {
+		return this.model;
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * @see model.IModel#getObservable()
-	 */
-	public java.util.Observable getObservable() {
-		// TODO - implement Model.getObservable
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void loadLevel(final int id) throws java.sql.SQLException {
-		// TODO - implement Model.loadLevel
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param model
-	 */
 	private void setModel(Model model) {
 		this.model = model;
 	}
-
 }

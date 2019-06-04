@@ -1,126 +1,225 @@
 package model;
 
-import java.util.*;
-import model.mobile.*;
-import model.element.*;
+import model.element.Element;
 
+import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
+
+/**
+ * The Level
+ */
 public class Level extends Observable {
+    private int width;
+    private int height;
+    private Element[][] content;
+    int time;// second / 5
+    private boolean lost = false;
+    private boolean win = false;
 
-	/**
-	 * The id.
-	 */
-	private int id;
-	/**
-	 * The level.
-	 */
-	private int level;
-	/**
-	 * The level data.
-	 */
-	private String levelFromDB;
-	private IMobile butterfly;
-	/**
-	 * The map which will stock every character with their X Y
-	 * coordinates.
-	 */
-	private Element[][] onTheLevel;
+    TimerTask task = new TimerTask() {
+        public void run() {
+            updateLevel();
+        }
+    };
+    Timer timer;
 
-	public int getId() {
-		return this.id;
-	}
+    /**
+     * Default map to counter outOfBoundException
+     */
+    public Level()
+    {
+        timer = new Timer();
+        width = 1;
+        height = 1;
+        time = 150 *5;
+        content = new Element[width][height];
+    }
 
-	public String getLevelFromDB() {
-		return this.levelFromDB;
-	}
+    /**
+     * Level constructor
+     *
+     * @param height_
+     * 		height
+     * @param width_
+     * 		width
+     */
+    public Level(int height_, int width_)
+    {
+        timer = new Timer();
+        timer.schedule(task,200, 200);
+        width = width_;
+        height = height_;
+        time = 150 *5;
+        content = new Element[height][width];
+    }
 
-	public IMobile getButterfly() {
-		return this.butterfly;
-	}
+    /**
+     * Return map's width
+     *
+     * @return width
+     * 		width
+     */
+    public int getWidth() {
+        return width;
+    }
 
-	/**
-	 * 
-	 * @param id
-	 * @param levelFromDB
-	 */
-	public Level(int id, String levelFromDB) {
-		// TODO - implement Level.Level
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Return map's height
+     *
+     * @return height
+     * 		height
+     */
+    public int getHeight() {
+        return height;
+    }
 
-	/**
-	 * Instantiates a new level.
-	 */
-	public Level() {
-		// TODO - implement Level.Level
-		throw new UnsupportedOperationException();
-	}
+    /**
+     *
+     * Return the level's content
+     * Should never be use
+     *
+     * @return content
+     * 		Element[][]
+     */
+    public Element[][] getContent() {
+        return content;
+    }
 
-	/**
-	 * 
-	 * @param id
-	 */
-	private void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * set the level's width
+     *
+     * @param width
+     * 		future width of the map
+     */
+    public void setWidth(int width){
+        if (width >= 0)
+        {
+            width = getWidth();
+        }
+        else
+        {
+            System.out.println("error : width < 0");
+        }
+    }
 
-	/**
-	 * 
-	 * @param levelFromDB
-	 */
-	private String setLevelFromDB(String levelFromDB) {
-		// TODO - implement Level.setLevelFromDB
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * set the level's height
+     *
+     * @param height
+     * 		future height of the map
+     */
+    public void setHeight(int height){
+        if (height >= 0)
+        {
+            height = getHeight();
+        }
+        else
+        {
+            System.out.println("error : height < 0");
+        }
+    }
 
-	/**
-	 * Read the String map, then create the grill.
-	 * @param levelFromDB The String map to read.
-	 */
-	public void loadLevelFromDB(String levelFromDB) {
-		// TODO - implement Level.loadLevelFromDB
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Return the Element on the map relative to a given position
+     *
+     * @param x
+     * 		x
+     * @param y
+     * 		y
+     * @return Element
+     * 		Element
+     */
+    public Element getElement(int x, int y) {
+        if( (x <= height) && (y <= width) )
+        {
+            return this.content[x][y];
+        }
+        else
+        {
+            return null;
+        }
+    }
 
-	/**
-	 * Notify the view if the level has changed / Mobile
-	 */
-	public void setMobileHasChanged() {
-		// TODO - implement Level.setMobileHasChanged
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Set an element on the map at a specific location
+     *
+     * @param x_
+     * 		x
+     * @param y_
+     * 		y
+     * @param element_
+     * 		Element
+     */
+    public void setElementOnTheLevel(int x_, int y_, Element element_) {
+        content[x_][y_] = element_;
+    }
 
-	/**
-	 * 
-	 * @param butterfly
-	 */
-	private void setButterfly(IMobile butterfly) {
-		this.butterfly = butterfly;
-	}
+    /**
+     * Update the level (called every 200 mill by task)
+     */
+    public void updateLevel() {
+        for(int y=height-1; y >= 0; y--)
+        {
+            for(int x=width-1; x >= 0; x--)
+            {
+                getElement(y, x);
+            }
+        }
 
-	/**
-	 * 
-	 * @param x
-	 * @param y
-	 */
-	public Element getOnTheLevelXY(int x, int y) {
-		// TODO - implement Level.getOnTheLevelXY
-		throw new UnsupportedOperationException();
-	}
+        if(time < 0)
+        {
+            System.out.println("Time out !");
+        }
+        else
+        {
+            time--;
+        }
 
-	/**
-	 * Sets the coordinate on the map.
-	 * @param element The object to place.
-	 * @param x The new X of the object.
-	 * @param y The new Y of the object.
-	 */
-	public void setOnTheLevelXY(Element element, int x, int y) {
-		// TODO - implement Level.setOnTheLevelXY
-		throw new UnsupportedOperationException();
-	}
+        setChanged();
+        notifyObservers();
 
-	public java.util.Observable getObservable() {
-		// TODO - implement Level.getObservable
-		throw new UnsupportedOperationException();
-	}
+    }
 
+    /**
+     * Get remaining time in second
+     *
+     * @return time
+     * 		time in second
+     *
+     */
+    public int getTime() {
+        return time/5;
+    }
+
+    /**
+     * Set remaining time in second
+     *
+     * @param sec_
+     * 		time in second
+     *
+     */
+    public void setTime(int sec_) {
+        time = sec_ *5;
+    }
+
+    /**
+     * Return true if the game is loose
+     *
+     * @return loose
+     * 		return true if game is loose
+     */
+    public boolean isLost() {
+        return lost;
+    }
+
+    /**
+     * Return true if the game is win
+     *
+     * @return win
+     * 		return true if game is win
+     */
+    public boolean isWin() {
+        return win;
+    }
 }
