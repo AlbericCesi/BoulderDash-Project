@@ -3,7 +3,6 @@ package model.mobile;
 import model.element.Element;
 import model.element.Permeability;
 import model.element.Sprite;
-import fr.exia.showboard.IBoard;
 
 import java.awt.*;
 
@@ -17,9 +16,6 @@ abstract class Mobile extends Element implements IMobile {
 
     /** The road. */
     private IDirt dirt;
-
-    /** The board. */
-    private IBoard  board;
 
     /**
      * Instantiates a new mobile.
@@ -123,17 +119,6 @@ abstract class Mobile extends Element implements IMobile {
         return this.dirt;
     }
 
-    /**
-     * Sets the road.
-     *
-     * @param dirt
-     *            the new dirt
-     */
-    private void setDirt(final IDirt dirt) {
-        this.dirt = dirt;
-    }
-
-
     @Override
     public Boolean isAlive() {
         return this.alive;
@@ -172,8 +157,5 @@ abstract class Mobile extends Element implements IMobile {
      *
      * @return the board
      */
-    protected IBoard getBoard() {
-        return this.board;
-    }
-
+   
 }

@@ -6,12 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-/**
- * <h1>The Sprite Class.</h1>
- *
- * @author Charles Larcier
- * @version 0.1
- */
+
 public class Sprite {
 
     /** The image. */
@@ -59,7 +54,7 @@ public class Sprite {
      */
     public final void loadImage() {
         try {
-            this.setImage(ImageIO.read(new File("C:\\Users\\ielki\\Documents\\GitHub\\Fichtrouille 5\\Branlix2000\\images\\" + this.getImageName())));
+            this.setImage(ImageIO.read(new File("C:\\Users\\Alberic\\git\\BoulderDash-Project\\SPRITTTTE\\" + this.getImageName())));
         } catch (IOException e) {
             e.printStackTrace();
         }

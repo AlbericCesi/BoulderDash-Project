@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IView;
-import model.Model;
 import model.mobile.IMobile;
 /**
  * The Class Controller.
@@ -47,7 +46,7 @@ public final class Controller extends KeyAdapter implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("BoulderDash v2");
+		this.view.printMessage("BoulderDash");
 	}
 
 	/**

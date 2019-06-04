@@ -3,11 +3,7 @@ package model.mobile;
 import model.element.Permeability;
 import model.element.Sprite;
 
-/**
- * The Class Human.
- *
- * @author Ismaël El Kihel
- */
+
 public class Human extends Mobile {
 
 	/** HumanBase  */

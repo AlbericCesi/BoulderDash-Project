@@ -3,7 +3,7 @@ package contract;
 /**
  * The Interface IView.
  *
- * @author Ismaël El Kihel
+ * @author Jean-Aymeric Diet
  */
 public interface IView {
 

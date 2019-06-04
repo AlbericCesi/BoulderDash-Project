@@ -4,11 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * The Class DBConnection.
- *
- * @author Ismaël El Kihel
- */
 public final class DBConnection {
 	/** The instance. */
 	private static DBConnection	INSTANCE	= null;

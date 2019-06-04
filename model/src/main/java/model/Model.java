@@ -1,10 +1,8 @@
 package model;
 
 import model.sql.DAOLevel;
-import model.sql.DBConnection;
-
 import java.util.Observable;
-
+import contract.IModel;
 
 /**
  * The Class model.
@@ -67,7 +65,7 @@ public final class Model extends Observable implements IModel {
 	}
 
 	public void loadLevel(final int code) {
-		final DAOLevel daolevel = new DAOLevel(DBConnection.getInstance().getConnection());
+		final DAOLevel daolevel = new DAOLevel();
 		this.setLevel(daolevel.find(code));
 	}
 	/**
@@ -77,9 +75,5 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Model getModel() {
 		return this.model;
-	}
-
-	private void setModel(Model model) {
-		this.model = model;
 	}
 }

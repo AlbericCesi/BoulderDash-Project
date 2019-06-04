@@ -3,12 +3,7 @@ package model.motionless;
 import model.element.Permeability;
 import model.element.Sprite;
 
-/**
- * <h1>The Ironwall Class.</h1>
- *
- * @author Charles Larcier
- * @version 0.3
- */
+
 public class IronWall extends MotionLessElement {
 
     /** The Constant SPRITE. */

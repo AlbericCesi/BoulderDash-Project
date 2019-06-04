@@ -1,10 +1,9 @@
 package model.mobile;
 
-import fr.exia.showboard.IPawn;
+
 import java.awt.*;
 
-public interface IMobile extends IPawn {
-
+public interface IMobile {
       //Move up.
     void moveUp();
      //Move left.
@@ -21,7 +20,7 @@ public interface IMobile extends IPawn {
      *
      * @return the x
      */
-    @Override
+  
     int getX();
 
     /**
@@ -29,7 +28,7 @@ public interface IMobile extends IPawn {
      *
      * @return the y
      */
-    @Override
+   
     int getY();
 
     /**
@@ -46,6 +45,6 @@ public interface IMobile extends IPawn {
      */
     Boolean hasBeenKilled();
 
-    @Override
+  
     Point getPosition();
 }

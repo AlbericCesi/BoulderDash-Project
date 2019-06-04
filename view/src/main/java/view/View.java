@@ -6,8 +6,8 @@ import javax.swing.SwingUtilities;
 
 import contract.ControllerOrder;
 import contract.IController;
+import contract.IModel;
 import contract.IView;
-import model.IModel;
 
 /**
  * The Class View

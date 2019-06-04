@@ -4,12 +4,7 @@ import model.Level;
 
 import java.sql.*;
 
-/**
- * The Class DAOLevel.
- *
- * @author Ismaël El Kihel / Manon Cantos
- *
- */
+
 public class DAOLevel extends DAOEntity {
 
 	/**

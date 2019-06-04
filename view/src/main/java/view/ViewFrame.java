@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 
 import contract.IController;
-import model.IModel;
+import contract.IModel;
 import model.mobile.Human;
 
 /**
@@ -175,4 +175,4 @@ class ViewFrame extends JFrame implements KeyListener {
     public void keyReleased(final KeyEvent e) {
 
     }
-}}
+}

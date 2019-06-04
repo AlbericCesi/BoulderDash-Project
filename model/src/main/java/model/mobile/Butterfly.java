@@ -3,13 +3,6 @@ package model.mobile;
 import model.element.Permeability;
 import model.element.Sprite;
 
-
-/**
- * The Class Butterfly.
- *
- * @author Ismaël El Kihel
- */
-
 public class Butterfly extends Mobile {
 
 	/** ButterflyBase  */

@@ -4,11 +4,7 @@ import model.element.Element;
 import model.element.Permeability;
 import model.element.Sprite;
 
-/**
- * <h1>The MotionlessElement Class.</h1>
- *
- * @author Manon Cantos
- */
+
 abstract class MotionLessElement extends Element {
 	
 	/**
