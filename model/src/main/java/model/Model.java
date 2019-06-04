@@ -1,85 +1,65 @@
 package model;
 
-import java.sql.SQLException;
-import java.util.Observable;
-
-import contract.IModel;
-import entity.HelloWorld;
+import java.util.*;
 
 /**
- * The Class Model.
- *
+ * The Class model.
+ * 
  * @author Jean-Aymeric Diet
  */
 public final class Model extends Observable implements IModel {
 
-	/** The helloWorld. */
-	private HelloWorld helloWorld;
+	/**
+	 * The model.
+	 */
+	private Model model;
+	private Level level;
+
+	public Model getModel() {
+		return this.model;
+	}
+
+	public Level getLevel() {
+		return this.level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
+	}
 
 	/**
-	 * Instantiates a new model.
+	 * (non-Javadoc)
+	 * @see model.IModel#getModel()
 	 */
 	public Model() {
-		this.helloWorld = new HelloWorld();
+		// TODO - implement Model.Model
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-     * Gets the hello world.
-     *
-     * @return the hello world
-     */
-	/*
 	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage()
+	 * @see model.IModel#getObservable()
 	 */
-	public HelloWorld getHelloWorld() {
-		return this.helloWorld;
+	public java.util.Observable getObservable() {
+		// TODO - implement Model.getObservable
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-     * Sets the hello world.
-     *
-     * @param helloWorld
-     *            the new hello world
-     */
-	private void setHelloWorld(final HelloWorld helloWorld) {
-		this.helloWorld = helloWorld;
-		this.setChanged();
-		this.notifyObservers();
+	 * 
+	 * @param id
+	 */
+	public void loadLevel(final int id) throws java.sql.SQLException {
+		// TODO - implement Model.loadLevel
+		throw new UnsupportedOperationException();
 	}
 
 	/**
-     * Load hello world.
-     *
-     * @param code
-     *            the code
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getMessage(java.lang.String)
+	 * 
+	 * @param model
 	 */
-	public void loadHelloWorld(final String code) {
-		try {
-			final DAOHelloWorld daoHelloWorld = new DAOHelloWorld(DBConnection.getInstance().getConnection());
-			this.setHelloWorld(daoHelloWorld.find(code));
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
+	private void setModel(Model model) {
+		this.model = model;
 	}
 
-	/**
-     * Gets the observable.
-     *
-     * @return the observable
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IModel#getObservable()
-	 */
-	public Observable getObservable() {
-		return this;
-	}
 }
