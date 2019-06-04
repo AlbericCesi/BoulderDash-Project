@@ -1,151 +1,179 @@
 package model.mobile;
 
-import model.element.*;
+import model.element.Element;
+import model.element.Permeability;
+import model.element.Sprite;
+import fr.exia.showboard.IBoard;
+
+import java.awt.*;
 
 abstract class Mobile extends Element implements IMobile {
 
-	/**
-	 * The position.
-	 */
-	private Point position;
-	/**
-	 * The alive.
-	 */
-	private Boolean alive = true;
-	/**
-	 * The board.
-	 */
-	private fr.exia.showboard.IBoard board;
-	/**
-	 * The road.
-	 */
-	private IDirt dirt;
+    /** The position. */
+    private Point position;
 
-	public Point getPosition() {
-		return this.position;
-	}
+    /** The alive. */
+    private Boolean alive = true;
 
-	public void setPosition(Point position) {
-		this.position = position;
-	}
+    /** The road. */
+    private IDirt dirt;
 
-	public IDirt getDirt() {
-		return this.dirt;
-	}
+    /** The board. */
+    private IBoard  board;
 
-	/**
-	 * Instantiates a new mobile.
-	 * @param sprite the sprite
-	 * @param permeability the permeability
-	 */
-	Mobile(final Sprite sprite, final Permeability permeability) {
-		// TODO - implement Mobile.Mobile
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Instantiates a new mobile.
+     *
+     * @param sprite
+     *            the sprite
+     * @param permeability
+     *            the permeability
+     */
+    Mobile(final Sprite sprite, final Permeability permeability) {
+        super(sprite, permeability);
+        this.position = new Point();
+    }
 
-	@Override
-	public void moveUp() {
-		// TODO - implement Mobile.moveUp
-		throw new UnsupportedOperationException();
-	}
 
-	@Override
-	public void moveLeft() {
-		// TODO - implement Mobile.moveLeft
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void moveUp() {
+        this.setY(this.getY() - 1);
+        this.setHasMoved();
+    }
 
-	@Override
-	public void moveDown() {
-		// TODO - implement Mobile.moveDown
-		throw new UnsupportedOperationException();
-	}
 
-	@Override
-	public void moveRight() {
-		// TODO - implement Mobile.moveRight
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void moveLeft() {
+        this.setX(this.getX() - 1);
+        this.setHasMoved();
+    }
 
-	@Override
-	public void doNothing() {
-		// TODO - implement Mobile.doNothing
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * Sets the dirt has moved.
-	 */
-	private void setHasMoved() {
-		// TODO - implement Mobile.setHasMoved
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void moveDown() {
+        this.setY(this.getY() + 1);
+        this.setHasMoved();
+    }
 
-	@Override
-	public final int getX() {
-		// TODO - implement Mobile.getX
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * Sets the x.
-	 * @param x the new x
-	 */
-	public final void setX(final int x) {
-		// TODO - implement Mobile.setX
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void moveRight() {
+        this.setX(this.getX() + 1);
+        this.setHasMoved();
+    }
 
-	@Override
-	public final int getY() {
-		// TODO - implement Mobile.getY
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * Sets the y.
-	 * @param y the new y, as the road is an infinite loop, there's a modulo
-	 * based on the road height.
-	 */
-	public final void setY(final int y) {
-		// TODO - implement Mobile.setY
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public void doNothing() {
+        this.setHasMoved();
+    }
 
-	/**
-	 * Sets the road.
-	 * @param dirt the new dirt
-	 */
-	private void setDirt(final IDirt dirt) {
-		this.dirt = dirt;
-	}
+    /**
+     * Sets the dirt has moved.
+     */
+    private void setHasMoved() {
+        this.getDirt().setMobileHasChanged();
+    }
 
-	@Override
-	public Boolean isAlive() {
-		// TODO - implement Mobile.isAlive
-		throw new UnsupportedOperationException();
-	}
 
-	/**
-	 * Dies.
-	 */
-	protected void isDead() {
-		// TODO - implement Mobile.isDead
-		throw new UnsupportedOperationException();
-	}
+    @Override
+    public final int getX() {
+        return this.getPosition().x;
+    }
 
-	@Override
-	public Boolean hasBeenKilled() {
-		// TODO - implement Mobile.hasBeenKilled
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Sets the x.
+     *
+     * @param x
+     *            the new x
+     */
+    public final void setX(final int x) {
+        this.getPosition().x = x;
+        if (this.hasBeenKilled()) {
+            this.isDead();
+        }
+    }
 
-	/**
-	 * Gets the board.
-	 * @return the board
-	 */
-	protected fr.exia.showboard.IBoard getBoard() {
-		return this.board;
-	}
+
+    @Override
+    public final int getY() {
+        return this.getPosition().y;
+    }
+
+    /**
+     * Sets the y.
+     *
+     * @param y
+     *            the new y, as the road is an infinite loop, there's a modulo
+     *            based on the road height.
+     */
+    public final void setY(final int y) {
+        this.getPosition().y = (y + this.getDirt().getHeight()) % this.getDirt().getHeight();
+        if (this.hasBeenKilled()) {
+            this.isDead();
+        }
+    }
+
+    /**
+     * Gets the dirt.
+     *
+     * @return the dirt
+     */
+    public IDirt getDirt() {
+        return this.dirt;
+    }
+
+    /**
+     * Sets the road.
+     *
+     * @param dirt
+     *            the new dirt
+     */
+    private void setDirt(final IDirt dirt) {
+        this.dirt = dirt;
+    }
+
+
+    @Override
+    public Boolean isAlive() {
+        return this.alive;
+    }
+
+    /**
+     * Dies.
+     */
+    protected void isDead() {
+        this.alive = false;
+        this.setHasMoved();
+    }
+
+    @Override
+    public Boolean hasBeenKilled() {
+        return this.getDirt().getOnTheDirtXY(this.getX(), this.getY()).getPermeability() == Permeability.BLOCKING;
+    }
+
+    @Override
+    public Point getPosition() {
+        return this.position;
+    }
+
+    /**
+     * Sets the position.
+     *
+     * @param position
+     *            the position to set
+     */
+    public void setPosition(final Point position) {
+        this.position = position;
+    }
+
+    /**
+     * Gets the board.
+     *
+     * @return the board
+     */
+    protected IBoard getBoard() {
+        return this.board;
+    }
 
 }

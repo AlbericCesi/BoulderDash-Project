@@ -1,49 +1,62 @@
 package model.sql;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  * The Class DBConnection.
- * 
+ *
  * @author Ismaël El Kihel
  */
 public final class DBConnection {
+	/** The instance. */
+	private static DBConnection	INSTANCE	= null;
 
-	/**
-	 * The connection.
-	 */
-	private java.sql.Connection connection;
-	/**
-	 * The instance.
-	 */
-	private static DBConnection INSTANCE = null;
-
-	public java.sql.Connection getConnection() {
-		return this.connection;
-	}
+	/** The connection. */
+	private Connection			connection;
 
 	/**
 	 * Instantiates a new DB connection.
 	 */
 	private DBConnection() {
-		// TODO - implement DBConnection.DBConnection
-		throw new UnsupportedOperationException();
+		this.open();
 	}
 
 	/**
 	 * Gets the single instance of DBConnection.
+	 *
 	 * @return single instance of DBConnection
 	 */
 	public static synchronized DBConnection getInstance() {
-		// TODO - implement DBConnection.getInstance
-		throw new UnsupportedOperationException();
+		if (DBConnection.INSTANCE == null) {
+			DBConnection.INSTANCE = new DBConnection();
+		}
+		return DBConnection.INSTANCE;
 	}
 
 	/**
 	 * Open.
+	 *
 	 * @return the boolean
 	 */
 	private Boolean open() {
-		// TODO - implement DBConnection.open
-		throw new UnsupportedOperationException();
+		final DBProperties dbProperties = new DBProperties();
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			this.connection = DriverManager.getConnection(dbProperties.getUrl(), dbProperties.getLogin(), dbProperties.getPassword());
+		} catch (final ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 */
+	public Connection getConnection() {
+		return this.connection;
+	}
 }

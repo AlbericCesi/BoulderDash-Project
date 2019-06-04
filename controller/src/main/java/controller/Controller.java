@@ -1,84 +1,119 @@
 package controller;
 
-import contract.*;
+import java.awt.event.KeyAdapter;
 
-public final class Controller implements IController, IOrderPerformer, IBoulderDashController {
+import contract.ControllerOrder;
+import contract.IController;
+import contract.IView;
+import model.Model;
+import model.mobile.IMobile;
+/**
+ * The Class Controller.
+ */
+public final class Controller extends KeyAdapter implements IController {
 
-	private model.element.motionless.Door tkt;
-	private final int speed = 20000;
-	private StateDoor door;
+	/**
+	 * The view.
+	 */
 	private IView view;
-	private IModel model;
-	private Order stackOrder;
 
-	public IView getView() {
-		return this.view;
+	/**
+	 * The mobile.
+	 */
+	private IMobile mobile;
+
+	/**
+ 	* The model.
+ 	*/
+	private Model model;
+
+	/**
+	 * Instantiates a new controller.
+	 *  @param view  the view
+	 * @param model the model
+	 */
+
+	public Controller(final IView view, final model.Model model) {
+		this.setView(view);
+		this.setModel(model);
 	}
 
-	public void setView(IView view) {
-		this.view = view;
+	/**
+	 * Control.
+	 */
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see contract.IController#control()
+	 */
+	public void control() {
+		this.view.printMessage("BoulderDash v2");
 	}
 
-	public IModel getModel() {
-		return this.model;
+	/**
+	 * Sets the view.
+	 *
+	 * @param pview the new view
+	 */
+	private void setView(final IView pview) {
+		this.view = pview;
 	}
 
-	public void setModel(IModel model) {
+	/**
+	 * Sets the model.
+	 *
+	 * @param model the new model
+	 */
+	private void setModel(final Model model) {
 		this.model = model;
 	}
 
-	public Order getStackOrder() {
-		return this.stackOrder;
-	}
-
-	public void setStackOrder(Order stackOrder) {
-		this.stackOrder = stackOrder;
-	}
-
 	/**
-	 * 
-	 * @param view
-	 * @param model
+	 * Order perform.
+	 *
+	 * @param controllerOrder the controller order
 	 */
-	public Controller(final IView view, final IModel model) {
-		// TODO - implement Controller.Controller
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public void start() throws InterruptedException {
-		// TODO - implement Controller.start
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param stackOrder
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
-	public void orderPerform(final Order stackOrder) {
-		// TODO - implement Controller.orderPerform
-		throw new UnsupportedOperationException();
+	public void orderPerform(final ControllerOrder controllerOrder) {
+		switch (controllerOrder) {
+			case Up:
+				this.mobile.moveUp();
+				break;
+			case Down:
+				this.mobile.moveDown();
+				break;
+			case Left:
+				this.mobile.moveLeft();
+				break;
+			case Right:
+				this.mobile.moveRight();
+				break;
+            case One:
+                this.model.getLevel();
+                this.model.loadLevel(1);
+                break;
+            case Two:
+                this.model.getLevel();
+                this.model.loadLevel(2);
+                break;
+            case Three:
+                this.model.getLevel();
+                this.model.loadLevel(3);
+                break;
+            case Four:
+                this.model.getLevel();
+                this.model.loadLevel(4);
+                break;
+            case Five:
+                this.model.getLevel();
+                this.model.loadLevel(5);
+			default:
+			case Nope:
+				break;
+		}
 	}
-
-	public void clearStackOrder() {
-		// TODO - implement Controller.clearStackOrder
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
-	public IOrderPerformer getOrderPeformer() {
-		// TODO - implement Controller.getOrderPeformer
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param userOrder
-	 */
-	@Override
-	public void orderPerformer(Order userOrder) {
-		// TODO - implement Controller.orderPerformer
-		throw new UnsupportedOperationException();
-	}
-
 }

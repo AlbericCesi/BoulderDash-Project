@@ -1,76 +1,62 @@
 package model.mobile;
 
-import java.util.*;
-import model.element.*;
+import java.util.Observable;
+
+import model.element.Element;
+import model.element.Sprite;
+
 
 public class Dirt extends Observable implements IDirt {
 
 	private int width;
 	private int height;
 	private Element[][] onTheDirt;
-	private static final Sprite spriteDirtLevel1 = new Sprite('5', "Level\\Level 1\\Dirt.png");
 
-	public int getWidth() {
+	private static final Sprite spriteDirtLevel1 = new Sprite('5', "Level\\Level 1\\Dirt.png");
+	
+	public Dirt() {
+		super();
+	}
+
+	@Override
+	public final int getWidth() {
 		return this.width;
 	}
 
-	public int getHeight() {
-		return this.height;
-	}
 
-	public Dirt() {
-		// TODO - implement Dirt.Dirt
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param width
-	 */
 	private void setWidth(final int width) {
 		this.width = width;
 	}
 
-	/**
-	 * 
-	 * @param height
-	 */
+	
+	@Override
+	public final int getHeight() {
+		return this.height;
+	}
+
+	
 	private void setHeight(final int height) {
 		this.height = height;
 	}
 
-	/**
-	 * 
-	 * @param x
-	 * @param y
-	 */
 	@Override
 	public final Element getOnTheDirtXY(final int x, final int y) {
-		// TODO - implement Dirt.getOnTheDirtXY
-		throw new UnsupportedOperationException();
+		return this.onTheDirt[x][y];
 	}
 
-	/**
-	 * 
-	 * @param element
-	 * @param x
-	 * @param y
-	 */
+	
 	private void setOnTheDirtXY(final Element element, final int x, final int y) {
-		// TODO - implement Dirt.setOnTheDirtXY
-		throw new UnsupportedOperationException();
+		this.onTheDirt[x][y] = element;
 	}
 
 	@Override
 	public final void setMobileHasChanged() {
-		// TODO - implement Dirt.setMobileHasChanged
-		throw new UnsupportedOperationException();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	@Override
-	public java.util.Observable getObservable() {
-		// TODO - implement Dirt.getObservable
-		throw new UnsupportedOperationException();
+	public Observable getObservable() {
+		return this;
 	}
-
 }

@@ -1,38 +1,35 @@
 package model.mobile;
 
-import model.element.*;
+import model.element.Permeability;
+import model.element.Sprite;
 
 public class Rock extends Mobile {
 
-	/**
-	 * RockBase
-	 */
+	/** RockBase */
 	private static final Sprite spriteRIdle = new Sprite('4', "Items\\rock.png");
 
-	/**
-	 * Instantiates a new Rock
-	 */
+	/** Instantiates a new Rock */
+
 	public Rock() {
-		// TODO - implement Rock.Rock
-		throw new UnsupportedOperationException();
+		super(spriteRIdle, Permeability.BLOCKING);
+		spriteRIdle.loadImage();
 	}
 
 	@Override
 	public final void moveLeft() {
-		// TODO - implement Rock.moveLeft
-		throw new UnsupportedOperationException();
+		super.moveLeft();
+		this.setSprite(spriteRIdle);
 	}
 
 	@Override
 	public final void moveRight() {
-		// TODO - implement Rock.moveRight
-		throw new UnsupportedOperationException();
+		super.moveRight();
+		this.setSprite(spriteRIdle);
 	}
 
 	@Override
 	public final void moveDown() {
-		// TODO - implement Rock.moveDown
-		throw new UnsupportedOperationException();
+		super.moveDown();
+		this.setSprite(spriteRIdle);
 	}
-
 }

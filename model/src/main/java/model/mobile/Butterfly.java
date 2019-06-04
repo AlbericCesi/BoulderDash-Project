@@ -1,54 +1,56 @@
 package model.mobile;
 
-import model.element.*;
+import model.element.Permeability;
+import model.element.Sprite;
+
 
 /**
  * The Class Butterfly.
- * 
+ *
  * @author Ismaël El Kihel
  */
+
 public class Butterfly extends Mobile {
 
-	/**
-	 * ButterflyBase
-	 */
+	/** ButterflyBase  */
 	private static final Sprite spriteBIdle = new Sprite('2', "Level\\Level 1\\Butterfly1.png");
-
-	/**
-	 * Instantiates a new Butterfly
-	 */
-	public Butterfly() {
-		// TODO - implement Butterfly.Butterfly
-		throw new UnsupportedOperationException();
+	
+	/** Instantiates a new Butterfly */
+		
+public Butterfly(){
+	super(spriteBIdle, Permeability.BLOCKING);
+	spriteBIdle.loadImage();
 	}
 
-	@Override
-	public final void moveLeft() {
-		// TODO - implement Butterfly.moveLeft
-		throw new UnsupportedOperationException();
+@Override
+	
+public final void moveLeft() {
+	 super.moveLeft();
+	 this.setSprite(spriteBIdle);
 	}
 
-	@Override
-	public final void moveRight() {
-		// TODO - implement Butterfly.moveRight
-		throw new UnsupportedOperationException();
+@Override
+	
+public final void moveRight() {
+	  super.moveRight();
+	  this.setSprite(spriteBIdle);
 	}
 
-	@Override
-	public final void moveUp() {
-		// TODO - implement Butterfly.moveUp
-		throw new UnsupportedOperationException();
+@Override
+	
+public final void moveUp() {
+	  super.moveUp();
+	  this.setSprite(spriteBIdle);
 	}
 
-	@Override
-	public final void moveDown() {
-		// TODO - implement Butterfly.moveDown
-		throw new UnsupportedOperationException();
+@Override
+	
+public final void moveDown() {
+	  super.moveDown();
+	  this.setSprite(spriteBIdle);
 	}
 
-	protected final void die() {
-		// TODO - implement Butterfly.die
-		throw new UnsupportedOperationException();
+protected final void die() {
+	  super.hasBeenKilled();
 	}
-
 }

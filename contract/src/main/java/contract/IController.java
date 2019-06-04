@@ -1,17 +1,17 @@
 package contract;
 
+/**
+ * The Interface IController.
+ *
+ * @author Ismaël El Kihel
+ */
 public interface IController {
 
-	IView getView();
-
-	IModel getModel();
-
-	Order getStackOrder();
-
 	/**
-	 * 
-	 * @param keyCodeToUserOrder
+	 * Order perform.
+	 *
+	 * @param controllerOrder
+	 *          the controller order
 	 */
-	void orderPerform(Order keyCodeToUserOrder);
-
+	void orderPerform(ControllerOrder controllerOrder);
 }

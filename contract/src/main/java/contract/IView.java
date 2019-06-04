@@ -1,19 +1,17 @@
 package contract;
 
+/**
+ * The Interface IView.
+ *
+ * @author Ismaël El Kihel
+ */
 public interface IView {
 
-	java.awt.Rectangle getCloseView();
-
-	int getView();
-
-	IOrderPerformer getOrderPerformer();
-
-	IMap GetMap();
-
-	/**
-	 * 
-	 * @param string
-	 */
-	void printMessage(String string);
-
+    /**
+     * Prints the message.
+     *
+     * @param message
+     *          the message
+     */
+    void printMessage(final String message);
 }

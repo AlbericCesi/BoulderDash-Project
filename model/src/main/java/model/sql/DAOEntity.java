@@ -1,50 +1,57 @@
 package model.sql;
 
-import model.*;
+import model.Level;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * The Class DAOEntity.
- * 
+ *
  * @author Jean-Aymeric Diet
  */
 abstract class DAOEntity {
 
-	/**
-	 * The connection.
-	 */
-	private final java.sql.Connection connection;
+	/** The connection. */
+	private final Connection connection;
 
 	/**
 	 * Instantiates a new DAO entity.
-	 * @param connection the connection
+	 *
+	 * @param connection
+	 *          the connection
+	 * @throws SQLException
+	 *           the SQL exception
 	 */
-	public DAOEntity(final java.sql.Connection connection) throws java.sql.SQLException {
-		// TODO - implement DAOEntity.DAOEntity
-		throw new UnsupportedOperationException();
+	public DAOEntity(final Connection connection) throws SQLException {
+		this.connection = connection;
 	}
 
 	protected DAOEntity() {
-		// TODO - implement DAOEntity.DAOEntity
-		throw new UnsupportedOperationException();
+		connection = null;
 	}
 
 	/**
 	 * Gets the connection.
+	 *
 	 * @return the connection
 	 */
-	protected java.sql.Connection getConnection() {
+	protected Connection getConnection() {
 		return this.connection;
 	}
 
 	/**
 	 * Creates.
+	 *
 	 * @param level , the level
+	 *
 	 * @return true , if successful
 	 */
 	public abstract boolean create(Level level);
 
 	/**
 	 * Delete.
+	 *
 	 * @param level , the level
 	 * @return true, if successful
 	 */
@@ -52,9 +59,9 @@ abstract class DAOEntity {
 
 	/**
 	 * Update.
+	 *
 	 * @param level , the level
 	 * @return true, if successful
 	 */
 	public abstract boolean update(Level level);
-
 }

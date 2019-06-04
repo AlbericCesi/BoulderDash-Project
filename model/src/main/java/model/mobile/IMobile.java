@@ -1,60 +1,51 @@
 package model.mobile;
 
-import fr.exia.showboard.*;
+import fr.exia.showboard.IPawn;
+import java.awt.*;
 
 public interface IMobile extends IPawn {
 
-	/**
-	 * Gets the x.
-	 * 
-	 * @return the x
-	 */
-	int getX();
+      //Move up.
+    void moveUp();
+     //Move left.
+    void moveLeft();
+     //Move down.
+    void moveDown();
+     //Move right.
+    void moveRight();
+     //Do nothing.
+    void doNothing();
 
-	/**
-	 * Gets the y.
-	 * 
-	 * @return the y
-	 */
-	int getY();
+    /**
+     * Gets the x.
+     *
+     * @return the x
+     */
+    @Override
+    int getX();
 
-	Point getPosition();
+    /**
+     * Gets the y.
+     *
+     * @return the y
+     */
+    @Override
+    int getY();
 
-	/**
-	 * Move up.
-	 */
-	void moveUp();
+    /**
+     * Checks if is alive.
+     *
+     * @return the alive
+     */
+    Boolean isAlive();
 
-	/**
-	 * Move left.
-	 */
-	void moveLeft();
+    /**
+     * Checks if the human has been killed.
+     *
+     * @return the boolean
+     */
+    Boolean hasBeenKilled();
 
-	/**
-	 * Move down.
-	 */
-	void moveDown();
-
-	/**
-	 * Move right.
-	 */
-	void moveRight();
-
-	/**
-	 * Do nothing.
-	 */
-	void doNothing();
-
-	/**
-	 * Checks if is alive.
-	 * @return the alive
-	 */
-	Boolean isAlive();
-
-	/**
-	 * Checks if the human has been killed.
-	 * @return the boolean
-	 */
-	Boolean hasBeenKilled();
-
+    @Override
+    Point getPosition();
 }

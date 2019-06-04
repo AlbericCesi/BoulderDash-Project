@@ -1,38 +1,35 @@
 package model.mobile;
 
-import model.element.*;
+import model.element.Permeability;
+import model.element.Sprite;
 
 public class Diamond extends Mobile {
 
-	/**
-	 * DiamondBase
-	 */
+	/** DiamondBase */
 	private static final Sprite spriteDIdle = new Sprite('3', "Items\\diamond.png");
 
-	/**
-	 * Instantiates a new Rock
-	 */
-	public Diamond() {
-		// TODO - implement Diamond.Diamond
-		throw new UnsupportedOperationException();
+	/** Instantiates a new Rock */
+
+	public Diamond(){
+		super(spriteDIdle, Permeability.BLOCKING);
+		spriteDIdle.loadImage();
 	}
 
 	@Override
 	public final void moveLeft() {
-		// TODO - implement Diamond.moveLeft
-		throw new UnsupportedOperationException();
+		super.moveLeft();
+		this.setSprite(spriteDIdle);
 	}
 
 	@Override
 	public final void moveRight() {
-		// TODO - implement Diamond.moveRight
-		throw new UnsupportedOperationException();
+		super.moveRight();
+		this.setSprite(spriteDIdle);
 	}
 
 	@Override
 	public final void moveDown() {
-		// TODO - implement Diamond.moveDown
-		throw new UnsupportedOperationException();
+		super.moveDown();
+		this.setSprite(spriteDIdle);
 	}
-
 }
